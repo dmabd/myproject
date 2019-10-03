@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shop.bean.Product" table="product">
+		<id name="id" type = "java.lang.Integer">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="userId" type="java.lang.Integer">
+			<column name="userId" />
+		</property>
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+		<property name="picUrl" type="java.lang.String">
+			<column name="picUrl" />
+		</property>
+		<property name="type" type="java.lang.String">
+			<column name="type" />
+		</property>
+		<property name="price" type="java.lang.Double">
+			<column name="price" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column name="description" />
+		</property>
+		<property name="state" type="java.lang.String">
+			<column name="state" />
+		</property>
+		<property name="num" type="java.lang.Integer">
+			<column name="num" />
+		</property>
+		<property name="location" type="java.lang.String">
+			<column name="location" />
+		</property>
+		<property name="dateOnSale" type="java.util.Date">
+			<column name="dateOnSale" />
+		</property>
+		<property name="dateSubmit" type="java.util.Date">
+			<column name="dateSubmit" />
+		</property>
+
+	</class>
+</hibernate-mapping>

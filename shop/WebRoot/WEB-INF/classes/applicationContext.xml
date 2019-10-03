@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tool="http://www.springframework.org/schema/tool" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/jee
+           http://www.springframework.org/schema/jee/spring-jee.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd
+           http://www.springframework.org/schema/tool
+           http://www.springframework.org/schema/tool/spring-tool.xsd">
+    <!-- 通过jdbc.properties引入数据库配置 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 使用c3p0数据库连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password"  value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 继承hibernate -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ><ref bean="dataSource" /></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<!-- 配置Hibernate框架与数据库的映射文件-->
+				<value>./User.hbm.xml</value>
+				<value>./Product.hbm.xml</value>
+				<value>./Orders.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 事务管理器配置,单数据源事务 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!--
+		业务类声明式事务管理配模板,需要使用事务管理业务服务对象,直接继承此Bean[即配置parent属性为此bean的id],方便统一配置
+	-->
+	<bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<!-- 指明进行事务管理业务方法名[*是通配符] service中方法必须以add，edit，del开头才能修改表，否则连接只读，只能查询 -->
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="del*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+    <!-- 配置Spring依赖注入项 -->
+	<!-- Action Start -->
+	<bean id="UserAction" class="com.shop.action.UserAction">
+		<property name="userService" ref="UserServiceImpl"></property>
+	</bean>
+	
+	<bean id="ProductAction" class="com.shop.action.ProductAction">
+		<property name="productService" ref="ProductServiceImpl"></property>
+	</bean>
+	
+	<bean id="OrdersAction" class="com.shop.action.OrdersAction">
+		<property name="ordersService" ref = "OrdersServiceImpl"></property>
+	</bean>
+	
+	<bean id="SellerAction" class="com.shop.action.SellerAction">
+		<property name="productService" ref = "ProductServiceImpl"></property>
+	</bean>
+	
+	<!-- Service Start -->
+	<bean id = "UserServiceImpl" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.shop.service.impl.UserServiceImpl">
+				<property name="dao" ref="UserDaoImpl"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="ProductServiceImpl" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.shop.service.impl.ProductServiceImpl">
+				<property name="dao" ref="ProductDaoImpl"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="OrdersServiceImpl" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="com.shop.service.impl.OrdersServiceImpl">
+				<property name="dao" ref="OrdersDaoImpl"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- Dao Start -->
+	<bean id = "UserDao" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id = "UserDaoImpl" class="com.shop.dao.impl.UserDaoImpl" parent="UserDao"></bean>
+	
+	<bean id="ProductDao" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="ProductDaoImpl" class="com.shop.dao.impl.ProductDaoImpl" parent="ProductDao"></bean>
+	
+	<bean id = "OrdersDao" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="OrdersDaoImpl" class="com.shop.dao.impl.OrdersDaoImpl" parent="OrdersDao"></bean>
+	
+</beans>

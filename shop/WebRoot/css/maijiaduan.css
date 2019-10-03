@@ -1,0 +1,106 @@
+.header {
+	position: relative;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	height: 100px;
+
+}
+
+.header img {
+	position: absolute;
+	top: 30px;
+}
+
+.a {
+	border: 1px solid lightgrey;
+	background: gainsboro;
+}
+
+.headerLogin {
+	text-align: right;
+}
+
+
+.pa-header {
+	height: 50px;
+	background: red;
+	text-align: center;
+	color: #FFFFFF;
+	line-height: 40px;
+	overflow: hidden ;
+
+}
+
+.pa_body .body-menu {
+	position: absolute;
+	top: 120px;
+	left: 0;
+	bottom: 0;
+	width: 200px;
+
+}
+.pa_body .body-menu img{
+	height: 200px;
+	width: 200px;
+}
+.pa_body .body-menu .chongzhiyue{
+	height: 20px;
+	width: 80px;
+	background: ;
+	
+}
+
+.pa_body .body-content {
+	position: absolute;
+	top: 120px;
+	left: 220px;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+
+}
+.producttable{
+	position: absolute;
+	
+	left:100px;
+	border: 1px solid #000000;
+	width: 1000px;
+	
+	border-collapse: collapse;
+	font-size: 150%;
+	
+}
+.notproducttable{
+	top: 400px;
+	position: absolute;
+	left:100px;
+	border: 1px solid #000000;
+	width: 1000px;
+	
+	border-collapse: collapse;
+	font-size: 150%;
+	
+}
+.notproducttable td{
+	border: 1px solid #000000;
+	white-space: nowrap;
+}
+.producttable td{
+	border: 1px solid #000000;
+	white-space: nowrap;
+}
+.backgroudsetting {
+
+	width: 100%;
+	height: 900px;
+	background-repeat: repeat;
+
+}
+
+.footer ul li {
+	text-decoration: none;
+	color: #999999;
+	margin-left: auto;
+	margin-right: auto;
+}

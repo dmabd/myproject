@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shop.bean.Orders" table="orders">
+		<id name="id" type = "java.lang.Integer">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="userId" type="java.lang.Integer">
+			<column name="userId"></column>
+		</property>
+		<property name="saleUserId" type="java.lang.Integer">
+			<column name="saleUserId"></column>
+		</property>
+		<property name="productId" type="java.lang.Integer">
+			<column name="productId"></column>
+		</property>
+		<property name="addressId" type="java.lang.Integer">
+			<column name="addressId"></column>
+		</property>
+		<property name="orderId" type="java.lang.String">
+			<column name="orderId"></column>
+		</property>
+		<property name="state" type="java.lang.String">
+			<column name="state"></column>
+		</property>
+		<property name="saleNum" type="java.lang.Integer">
+			<column name="saleNum"></column>
+		</property>
+		<property name="saleDate" type="java.util.Date">
+			<column name="saleDate"></column>
+		</property>
+		<property name="price" type="java.lang.Double">
+			<column name="price"></column>
+		</property>
+	</class>
+</hibernate-mapping>

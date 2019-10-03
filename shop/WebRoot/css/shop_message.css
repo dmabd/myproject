@@ -1,0 +1,161 @@
+.header{
+	position: relative;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	
+}
+.header img{
+	position: absolute;
+	top: 30px;
+}
+.header .search{
+	width: 60%;
+	height: 35px;
+	background: #fff;
+	margin: 0 auto;
+	position: relative;
+	top: 32.5px;
+	border: 2px solid #f00;
+}
+
+.header .search #search_content{
+	width: 85%;
+	height: 100%;
+	border: none;
+	outline: none;
+	padding-left:1%;
+	float: left;
+	
+	
+}
+.header .search #search_btn{
+	width: 14%;
+	height: 100%;
+	border: none;
+	background: #f00;
+	color: #fff;
+}
+.a{
+	border: 1px solid lightgrey;
+	background: gainsboro;
+}
+.headerLogin{
+	text-align: right;
+}
+
+.product_list{
+
+	right: 10px;
+	width: 90%;
+	height: 1100px;
+	margin: 0 auto;
+	padding: 30px 0;
+	
+}
+.product_list .shouye{
+
+	height: 40px;
+	width: 100%;
+	background: red;
+	color: #FFFFFF;
+	text-align: left;
+	line-height: 40px;
+	overflow: hidden ;
+	
+	
+}
+.product_list img{
+	height: 250px;
+	width: 220px;
+	position: absolute;
+	left: 100px;
+	float: left;
+	
+}
+.product_list .productname{
+	width: 400px;
+	position: absolute;
+	left: 400px;
+	font-size: medium;
+	font-weight: 900;
+
+}
+.product_list .product_message{
+	width: 600px;
+	height: auto;
+	position: absolute;
+	top: 320px;
+	color:black;
+	left: 400px;
+	background: #eee;
+	
+}
+
+.shopshuliang{
+	position: absolute;
+	height: 20px;
+	left: 400px;
+	top: 430px;
+	color:#999999;
+}
+.jiaru{
+	position: absolute;
+	left: 400px;
+	top: 520px;
+	text-align: left;
+	line-height: 40px;
+	overflow: hidden ;
+	color:#999999;
+}
+.jiaru .jiarugouwuche{
+	
+	height: 50px;
+	width: 200px;
+	margin-top: 20px;
+	margin-right: 100px;
+	background: #FF0000;
+	outline: none;
+}
+.descriptionmenu{
+	position: absolute;
+	top: 710px;
+	height: 40px;
+	width: 1730px;
+	background: red;
+	color: #FFFFFF;
+	text-align: left;
+	line-height: 40px;
+	overflow: hidden ;
+	text-align: left;
+	background: #FF0000;
+	
+	
+	
+}
+.description{
+	position: absolute;
+	top: 770px;
+	
+}
+
+
+
+
+
+
+.backgroudsetting{
+
+	width: 100%;
+	height: 1500px;
+	background-repeat:repeat ;
+	
+}
+
+.footer ul li{
+	text-decoration: none;
+	color: #999999;
+	margin-left: auto;
+	margin-right: auto;
+}

@@ -1,0 +1,74 @@
+.header{
+	position: relative;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	
+}
+.header img{
+	position: absolute;
+	top: 30px;
+}
+.header .search{
+	width: 60%;
+	height: 35px;
+	background: #fff;
+	margin: 0 auto;
+	position: relative;
+	top: 32.5px;
+	border: 2px solid #f00;
+}
+
+.header .search #search_content{
+	width: 85%;
+	height: 100%;
+	border: none;
+	outline: none;
+	padding-left:1%;
+	float: left;
+	
+	
+}
+.header .search #search_btn{
+	width: 14%;
+	height: 100%;
+	border: none;
+	background: #f00;
+	color: #fff;
+}
+.a{
+	border: 1px solid lightgrey;
+	background: gainsboro;
+}
+.headerLogin{
+	text-align: right;
+}
+
+.product_list{
+
+	right: 10px;
+	width: 90%;
+	height: 10px;
+	margin: 0 auto;
+	padding: 30px 0;
+	
+}
+.product_list .shouye{
+
+	height: 40px;
+	width: 100%;
+	background: red;
+	color: #FFFFFF;
+	text-align: left;
+	line-height: 40px;
+	overflow: hidden ;
+	
+	
+}
+.footer ul li{
+	text-decoration: none;
+	color: #999999;
+	margin-left: auto;
+	margin-right: auto;
+}
